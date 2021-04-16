@@ -1,8 +1,8 @@
-resource "google_compute_instance" "instance_create" {
-  name         = "sles12testing"
+resource "google_compute_instance" "instance_creat" {
+  name         = "sles12t"
   machine_type = "e2-small"
   zone         = "us-east4-c"
-  hostname = "sles12testing.personallab.local"
+  hostname = "sles12t.personallab.local"
   scheduling {
   preemptible  = true
   automatic_restart = false
@@ -29,10 +29,6 @@ resource "google_compute_instance" "instance_create" {
       sudo realm permit -g domain\ admins@PERSONALLAB.LOCAL
       sudo sh -c "echo 'entry_cache_timeout = 900' >> /etc/sssd/sssd.conf"
       sudo systemctl restart sssd.service
-      SCRIPT
-    shutdown-script = <<SCRIPT
-      #! /bin/bash
-      sudo realm leave --verbose PERSONALLAB.LOCAL
       SCRIPT
   }
 }

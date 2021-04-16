@@ -1,15 +1,15 @@
-resource "google_compute_instance" "instance_creat" {
-  name         = "sles12t"
+resource "google_compute_instance" "instance_creation" {
+  name         = "sles12test"
   machine_type = "e2-small"
   zone         = "us-east4-c"
-  hostname = "sles12t.personallab.local"
+  hostname = "sles12test.personallab.local"
   scheduling {
   preemptible  = true
   automatic_restart = false
   }
   boot_disk {
     initialize_params {
-      image = "projects/pelagic-magpie-308310/global/images/image-sles12"
+      image = "projects/pelagic-magpie-308310/global/images/sles12"
     }
   }
 
@@ -29,6 +29,10 @@ resource "google_compute_instance" "instance_creat" {
       sudo realm permit -g domain\ admins@PERSONALLAB.LOCAL
       sudo sh -c "echo 'entry_cache_timeout = 900' >> /etc/sssd/sssd.conf"
       sudo systemctl restart sssd.service
+      SCRIPT
+    shutdown-script = <<SCRIPT
+      #! /bin/bash
+      sudo realm leave --verbose PERSONALLAB.LOCAL
       SCRIPT
   }
 }

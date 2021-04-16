@@ -1,8 +1,8 @@
-resource "google_compute_instance" "instance_creation" {
-  name         = "sles12test4"
+resource "google_compute_instance" "instance_create" {
+  name         = "sles12test"
   machine_type = "e2-small"
   zone         = "us-east4-c"
-  hostname = "sles12test4.personallab.local"
+  hostname = "sles12test.personallab.local"
   scheduling {
   preemptible  = true
   automatic_restart = false

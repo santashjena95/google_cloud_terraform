@@ -1,15 +1,15 @@
-resource "google_compute_instance" "instance_create" {
-  name         = "sles12test"
+resource "google_compute_instance" "instance_creation" {
+  name         = "sles12testv"
   machine_type = "e2-small"
   zone         = "us-east4-c"
-  hostname = "sles12test.personallab.local"
+  hostname = "sles12testv.personallab.local"
   scheduling {
   preemptible  = true
   automatic_restart = false
   }
   boot_disk {
     initialize_params {
-      image = "projects/pelagic-magpie-308310/global/images/image-sles12"
+      image = "projects/pelagic-magpie-308310/global/images/sles12image"
     }
   }
 

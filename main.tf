@@ -9,7 +9,7 @@ resource "google_compute_instance" "instance_create" {
   }
   boot_disk {
     initialize_params {
-      image = "projects/pelagic-magpie-308310/global/images/sles12"
+      image = "projects/pelagic-magpie-308310/global/images/image-sles12"
     }
   }
 

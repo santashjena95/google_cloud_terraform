@@ -1,34 +1,8 @@
-resource "google_compute_instance" "instance_creation" {
-  name         = "sles12testv"
-  machine_type = "e2-small"
-  zone         = "us-east4-c"
-  hostname = "sles12testv.personallab.local"
-  scheduling {
-  preemptible  = true
-  automatic_restart = false
-  }
-  boot_disk {
-    initialize_params {
-      image = "projects/pelagic-magpie-308310/global/images/sles12image"
-    }
-  }
-
-  network_interface {
-    network = "test-vpc"
-    subnetwork = "test-subnet"
-    #network_ip = "10.0.0.24"
-    access_config {
-    
-    }
-  }
-  metadata = {
-    startup-script = <<SCRIPT
-      #! /bin/bash
-      sudo realm join --verbose PERSONALLAB.LOCAL
-      sudo realm permit -g AccAdminSecOpsServers@PERSONALLAB.LOCAL
-      sudo realm permit -g domain\ admins@PERSONALLAB.LOCAL
-      sudo sh -c "echo 'entry_cache_timeout = 900' >> /etc/sssd/sssd.conf"
-      sudo systemctl restart sssd.service
-      SCRIPT
-  }
+module "vm_domain_joined" {
+  source = "./modules"
+  instance_name   = "sles12testv"
+  vm_machine_type = "e2-small"
+  vm_zone   = "us-east4-c"
+  vm_hostname = "sles12testv.personallab.local"
+  vm_image  = "projects/pelagic-magpie-308310/global/images/sles12image"
 }

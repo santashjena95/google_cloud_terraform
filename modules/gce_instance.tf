@@ -3,6 +3,7 @@ resource "google_compute_instance" "instance_creation" {
   machine_type = var.vm_machine_type
   zone         = var.vm_zone
   hostname = var.vm_hostname
+  labels = { appname="test-terraform",environment="nonprod" }
   scheduling {
   preemptible  = true
   automatic_restart = false

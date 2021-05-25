@@ -31,3 +31,8 @@ resource "google_compute_instance" "instance_creation" {
       SCRIPT
   }
 }
+resource "null_resource" "remove_start_up_script" {
+  provisioner "local-exec" {
+    command = "gcloud compute instances remove-metadata ${var.instance_name} --zone={var.vm_zone} --keys=startup-script"
+  }
+}

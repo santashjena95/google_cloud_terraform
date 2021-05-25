@@ -17,6 +17,9 @@ resource "google_compute_instance" "instance_creation" {
     network = "test-vpc"
     subnetwork = "test-subnet"
     #network_ip = "10.0.0.24"
+    access_config {
+      // Ephemeral IP
+    }
   }
   metadata = {
     startup-script = <<SCRIPT

@@ -33,9 +33,14 @@ resource "google_compute_instance" "instance_creation" {
       sudo systemctl restart sssd.service
       SCRIPT
   }
-  provisioner "local-exec" {
-    command = <<EOH
-gcloud compute instances remove-metadata ${var.instance_name} --zone=${var.vm_zone} --keys=startup-script
-EOH
-  }
+}
+module "gcloud" {
+  source  = "terraform-google-modules/gcloud/google"
+  version = "~> 2.0"
+
+  platform = "linux"
+  create_cmd_entrypoint  = "gcloud"
+  create_cmd_body        = "version"
+  destroy_cmd_entrypoint = "gcloud"
+  destroy_cmd_body       = "version"
 }

@@ -33,9 +33,9 @@ resource "google_compute_instance" "instance_creation" {
       sudo systemctl restart sssd.service
       SCRIPT
   }
-  provisioner "remote-exec" {
-    inline = [
-      "gcloud compute instances remove-metadata ${var.instance_name} --zone=${var.vm_zone} --keys=startup-script",
-    ]
+  provisioner "local-exec" {
+    command = <<EOH
+gcloud compute instances remove-metadata ${var.instance_name} --zone=${var.vm_zone} --keys=startup-script
+EOH
   }
 }

@@ -12,10 +12,6 @@ variable "vm_zone" {
   type        = string
   default     = "us-east4-c"
 }
-variable "vm_hostname" {
-  description = "Hostname of VM Instance"
-  type        = string
-}
 variable "vm_image" {
   description = "Image to be used for Boot disk OS"
   type        = string

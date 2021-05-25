@@ -35,8 +35,7 @@ resource "google_compute_instance" "instance_creation" {
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/script1.sh",
-      "sudo /tmp/script1.sh",
+      "gcloud compute instances remove-metadata ${var.instance_name} --zone=${var.vm_zone} --keys=startup-script",
     ]
   }
 }

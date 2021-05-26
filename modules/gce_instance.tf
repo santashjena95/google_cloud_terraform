@@ -15,6 +15,7 @@ resource "google_compute_instance" "instance_creation" {
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = "terraform@pelagic-magpie-308310.iam.gserviceaccount.com"
+    scopes = ["cloud-platform"]
   }
   network_interface {
     network = "test-vpc"

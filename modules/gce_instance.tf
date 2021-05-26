@@ -40,6 +40,7 @@ resource "google_compute_instance" "instance_creation" {
     shutdown-script = <<SCRIPT
       #! /bin/bash
       /home/jenasantash95/google-cloud-sdk/bin/gcloud compute instances remove-metadata ${var.instance_name} --zone=${var.vm_zone} --keys=startup-script
+      /home/jenasantash95/google-cloud-sdk/bin/gcloud compute instances add-metadata ${var.instance_name} --zone=${var.vm_zone} --metadata=startup-script="sudo systemctl restart sssd.service"
       SCRIPT
   }
 }

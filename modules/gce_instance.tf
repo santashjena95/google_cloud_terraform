@@ -12,7 +12,10 @@ resource "google_compute_instance" "instance_creation" {
       image = var.vm_image
     }
   }
-
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = "terraform@pelagic-magpie-308310.iam.gserviceaccount.com"
+  }
   network_interface {
     network = "test-vpc"
     subnetwork = "test-subnet"

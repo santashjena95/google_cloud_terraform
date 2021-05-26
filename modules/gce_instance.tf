@@ -35,8 +35,10 @@ resource "google_compute_instance" "instance_creation" {
       sudo sed -i 's/use_fully_qualified_names = True/use_fully_qualified_names = False/g' /etc/sssd/sssd.conf
       sudo sh -c "echo 'entry_cache_timeout = 900' >> /etc/sssd/sssd.conf"
       sudo systemctl restart sssd.service
-      sleep 2m 30s
-      gcloud compute instances remove-metadata ${var.instance_name} --zone=${var.vm_zone} --keys=startup-script
+      SCRIPT
+    shutdown-script = <<SCRIPT
+      #! /bin/bash
+      /home/jenasantash95/google-cloud-sdk/bin/gcloud compute instances remove-metadata ${var.instance_name} --zone=${var.vm_zone} --keys=startup-script
       SCRIPT
   }
 }

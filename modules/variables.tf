@@ -2,6 +2,12 @@ variable "instance_name" {
   description = "The name of VM Instance"
   type        = string
 }
+variable "domain_user" {
+  type        = string
+}
+variable "domain_password" {
+  type        = string
+}
 variable "vm_machine_type" {
   description = "Machine type of VM Instance"
   type        = string

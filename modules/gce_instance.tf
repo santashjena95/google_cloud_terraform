@@ -29,6 +29,7 @@ resource "google_compute_instance" "instance_creation" {
     startup-script = <<SCRIPT
       #! /bin/bash
       sudo sed -i 's/.*127.0.1.1.*/127.0.1.1 ${var.instance_name}.personallab.local ${var.instance_name}/' /etc/hosts
+      echo ${var.domain_password} | kinit -V ${var.domain_user}@PERSONALLAB.LOCAL
       sudo realm join --verbose PERSONALLAB.LOCAL
       sudo realm permit -g AccAdminSecOpsServers@PERSONALLAB.LOCAL
       sudo realm permit -g domain\ admins@PERSONALLAB.LOCAL

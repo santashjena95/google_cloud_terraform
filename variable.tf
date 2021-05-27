@@ -7,6 +7,7 @@ variable "domain_password" {
 variable "instance_name" {
   description = "The name of VM Instance"
   type        = string
+  default     = "sles15sp1sap13"
 }
 variable "vm_machine_type" {
   description = "Machine type of VM Instance"
@@ -21,4 +22,5 @@ variable "vm_zone" {
 variable "vm_image" {
   description = "Image to be used for Boot disk OS"
   type        = string
+  default = "projects/pelagic-magpie-308310/global/images/sles15sp1sapnew"
 }

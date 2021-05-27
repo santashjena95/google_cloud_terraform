@@ -16,3 +16,9 @@ variable "vm_image" {
   description = "Image to be used for Boot disk OS"
   type        = string
 }
+variable "domain_user" {
+  type        = string
+}
+variable "domain_password" {
+  type        = string
+}

@@ -7,7 +7,7 @@ variable "domain_password" {
 variable "instance_name" {
   description = "The name of VM Instance"
   type        = string
-  default     = "sles15sp1sap13"
+  default     = "sles15sp1sap20"
 }
 variable "vm_machine_type" {
   description = "Machine type of VM Instance"
